@@ -91,8 +91,8 @@ dependencies {
     implementation 'androidx.hilt:hilt-navigation-compose:1.0.0'
 
     //Compose Nav
-    implementation 'io.github.raamcosta.compose-destinations:core:1.4.3-beta'
-    ksp 'io.github.raamcosta.compose-destinations:ksp:1.4.3-beta'
+    implementation 'io.github.raamcosta.compose-destinations:core:1.1.2-beta'
+    ksp 'io.github.raamcosta.compose-destinations:ksp:1.1.2-beta'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

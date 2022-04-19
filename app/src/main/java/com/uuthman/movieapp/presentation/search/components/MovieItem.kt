@@ -2,6 +2,7 @@ package com.uuthman.movieapp.presentation.search.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -25,6 +26,7 @@ fun MovieItem(
     title: String,
     type: String,
     image: String,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier
 ){
     val spacing = LocalSpacing.current
@@ -36,6 +38,9 @@ fun MovieItem(
             .height(90.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(color = MaterialTheme.colors.onBackground)
+            .clickable{
+                onClick()
+            }
             .align(Alignment.BottomCenter),
         ) {
            Column(modifier = Modifier

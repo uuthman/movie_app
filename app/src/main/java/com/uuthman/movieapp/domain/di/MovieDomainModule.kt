@@ -1,6 +1,7 @@
 package com.uuthman.movieapp.domain.di
 
 import com.uuthman.movieapp.domain.repository.MovieRepository
+import com.uuthman.movieapp.domain.use_case.GetMovieDetails
 import com.uuthman.movieapp.domain.use_case.MovieUseCases
 import com.uuthman.movieapp.domain.use_case.SearchMovie
 import dagger.Module
@@ -19,7 +20,8 @@ object MovieDomainModule {
         repository: MovieRepository,
     ): MovieUseCases{
         return MovieUseCases(
-            searchMovie = SearchMovie(repository = repository)
+            searchMovie = SearchMovie(repository = repository),
+            getMovieDetails = GetMovieDetails(repository = repository)
         )
     }
 }

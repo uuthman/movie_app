@@ -14,23 +14,24 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.annotation.ExperimentalCoilApi
 import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.uuthman.movieapp.presentation.destinations.DetailScreenDestination
 import com.uuthman.movieapp.presentation.search.components.MovieItem
 import com.uuthman.movieapp.presentation.search.components.SearchTextField
 import com.uuthman.movieapp.ui.theme.LocalSpacing
 import com.uuthman.movieapp.util.UiEvent
-import kotlinx.coroutines.flow.collect
 
 @ExperimentalComposeUiApi
 @ExperimentalCoilApi
 @Destination(start = true)
 @Composable
 fun SearchScreen(
+    navigator: DestinationsNavigator,
     viewModel: SearchViewModel = hiltViewModel()
 ){
     val spacing = LocalSpacing.current
@@ -81,8 +82,12 @@ fun SearchScreen(
                     movie.title,
                     movie.type,
                     movie.poster,
-                    modifier =
-                    Modifier
+                    onClick = {
+                        navigator.navigate(
+                            DetailScreenDestination(id = movie.id)
+                        )
+                    },
+                    modifier = Modifier
                         .padding(horizontal = spacing.spaceMedium)
                         .fillMaxWidth()
                         .height(170.dp)
