@@ -10,7 +10,7 @@ class KeyAuthInterceptor : Interceptor {
         val url = request
             .url
             .newBuilder()
-            .addQueryParameter("apiKey","43ac6862")
+            .addQueryParameter("apiKey","")
             .build()
         request = request.newBuilder().url(url).build()
         return chain.proceed(request = request)

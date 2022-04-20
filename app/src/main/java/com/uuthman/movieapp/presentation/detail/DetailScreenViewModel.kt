@@ -7,13 +7,14 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.uuthman.movieapp.domain.repository.MovieRepository
+import com.uuthman.movieapp.domain.use_case.MovieUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailScreenViewModel @Inject constructor(
-    private val repository: MovieRepository,
+    private val movieUseCases: MovieUseCases,
     private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -24,7 +25,7 @@ class DetailScreenViewModel @Inject constructor(
         viewModelScope.launch {
             val movieId = savedStateHandle.get<String>("id") ?: return@launch
             state = state.copy(isLoading = true)
-            val result = repository.getItemDetail(movieId)
+            val result = movieUseCases.getMovieDetails(movieId)
             result.onSuccess {
                 state = state.copy(
                     isLoading = false,

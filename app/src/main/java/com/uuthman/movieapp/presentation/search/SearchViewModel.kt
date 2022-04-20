@@ -36,7 +36,6 @@ class SearchViewModel @Inject constructor(
             is SearchEvent.OnMovieClicked -> {
 
             }
-            else -> {}
         }
     }
 
